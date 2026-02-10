@@ -1,3 +1,9 @@
+import Title from "./assets/components/title";
+
 export default function App() {
-  return <h1>Demo Vite & React</h1>;
+  return (
+    <>
+      <Title />
+    </>
+  );
 }
