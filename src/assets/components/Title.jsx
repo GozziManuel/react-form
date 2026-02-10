@@ -14,6 +14,13 @@ export default function Title() {
     e.preventDefault();
     setCurrentTitle([...setTitle, currentIndex]);
   };
+  //   function for buttons
+  const deleteOptionButton = (deleteButton) => {
+    setCurrentTitle(
+      setTitle.filter((element, index) => index !== deleteButton),
+    );
+  };
+
   return (
     <div className="container-sm">
       <div className="row">
@@ -23,7 +30,14 @@ export default function Title() {
               {element}
             </h2>
             <div className="btncontainer">
-              <button className="btn btn-danger">Delete</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  deleteOptionButton(index);
+                }}
+              >
+                Delete
+              </button>
               <button className="btn btn-primary">Change</button>
             </div>
           </div>
