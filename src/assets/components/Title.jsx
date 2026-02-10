@@ -18,9 +18,15 @@ export default function Title() {
     <div className="container-sm">
       <div className="row">
         {setTitle.map((element, index) => (
-          <h2 className="col-4 text-center" key={index}>
-            {element}
-          </h2>
+          <div className="col-4 d-flex">
+            <h2 className="text-center m-5" key={index}>
+              {element}
+            </h2>
+            <div className="btncontainer">
+              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-primary">Change</button>
+            </div>
+          </div>
         ))}
 
         <form onSubmit={inputSubmit}>
