@@ -7,7 +7,7 @@ export default function Title() {
   //   useSTATE
   const [setTitle, setCurrentTitle] = useState(titles);
   const [currentIndex, setCurrentIndex] = useState("");
-
+  const [isVisible, setIsVisible] = useState(true);
   //   function for form
   const inputFinder = (e) => setCurrentIndex(e.target.value);
   const inputSubmit = (e) => {
@@ -23,25 +23,52 @@ export default function Title() {
 
   return (
     <div className="container-sm">
-      <div className="row">
-        {setTitle.map((element, index) => (
-          <div className="col-4 d-flex">
-            <h2 className="text-center m-5" key={index}>
-              {element}
-            </h2>
-            <div className="btncontainer">
-              <button
-                className="btn btn-danger"
-                onClick={() => {
-                  deleteOptionButton(index);
-                }}
-              >
-                Delete
-              </button>
-              <button className="btn btn-primary">Change</button>
+      <div>
+        <div className="row">
+          {setTitle.map((element, index) => (
+            <div className="col-4 d-flex">
+              <h2 className="text-center m-5" key={index}>
+                {element}
+              </h2>
+              <div className="btncontainer">
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    deleteOptionButton(index);
+                  }}
+                >
+                  Delete
+                </button>
+                <div>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => setIsVisible(!isVisible)}
+                  >
+                    Change
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+          {isVisible && (
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Recipient’s username"
+                aria-label="Recipient’s username"
+                aria-describedby="button-addon2"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="button-addon2"
+              >
+                Button
+              </button>
+            </div>
+          )}
+        </div>
 
         <form onSubmit={inputSubmit}>
           <div className="input-group mb-3 mt-5">
