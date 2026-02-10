@@ -1,23 +1,23 @@
 // IMPORTS
 import { useState } from "react";
+// LIST OF ITEMS
+const titles = ["Articolo 1", "Articolo 2 ", "Articolo 3 "];
 
 export default function Title() {
-  // LIST OF ITEMS
-  const titles = ["Articolo 1", "Articolo 2 ", "Articolo 3 "];
-
   //   useSTATE
+  const [setTitle, setCurrentTitle] = useState(titles);
   const [currentIndex, setCurrentIndex] = useState("");
 
   //   function for form
   const inputFinder = (e) => setCurrentIndex(e.target.value);
   const inputSubmit = (e) => {
     e.preventDefault();
-    titles.push(currentIndex);
+    setCurrentTitle([...setTitle, currentIndex]);
   };
   return (
     <div className="container-sm">
       <div className="row">
-        {titles.map((element, index) => (
+        {setTitle.map((element, index) => (
           <h2 className="col-4 text-center" key={index}>
             {element}
           </h2>
