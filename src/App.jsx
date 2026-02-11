@@ -1,4 +1,4 @@
-import Title from "./assets/components/title";
+import Title from "./components/title";
 
 export default function App() {
   return (

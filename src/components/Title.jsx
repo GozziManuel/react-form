@@ -7,7 +7,20 @@ export default function Title() {
   //   useSTATE
   const [setTitle, setCurrentTitle] = useState(titles);
   const [currentIndex, setCurrentIndex] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
+
+  // Toggling Change button
+  const [editTitle, setEditTitle] = useState("");
+
+  // State For changing Title
+  const [editTitleIndex, setEditTitleIndex] = useState(0);
+  const editedTitle = setTitle[editTitleIndex];
+
+  // Function to declare wich Article
+  const changingTitle = (EditIndex) => {
+    setEditTitleIndex(EditIndex);
+    setEditTitle(setTitle[EditIndex]);
+  };
+
   //   function for form
   const inputFinder = (e) => setCurrentIndex(e.target.value);
   const inputSubmit = (e) => {
@@ -42,7 +55,7 @@ export default function Title() {
                 <div>
                   <button
                     className="btn btn-primary"
-                    onClick={() => setIsVisible(!isVisible)}
+                    onClick={() => changingTitle(index)}
                   >
                     Change
                   </button>
@@ -50,24 +63,6 @@ export default function Title() {
               </div>
             </div>
           ))}
-          {isVisible && (
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Recipient’s username"
-                aria-label="Recipient’s username"
-                aria-describedby="button-addon2"
-              />
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                id="button-addon2"
-              >
-                Button
-              </button>
-            </div>
-          )}
         </div>
 
         <form onSubmit={inputSubmit}>
@@ -86,6 +81,18 @@ export default function Title() {
               Aggiungi
             </button>
           </div>
+        </form>
+
+        <form class="input-group mb-3">
+          <h1>{editedTitle}</h1>
+          <input
+            value={editTitle}
+            type="text"
+            className="form-control"
+            placeholder="Change Title"
+            aria-describedby="button-addon2"
+          />
+          <button class="btn btn-primary">Change</button>
         </form>
       </div>
     </div>
