@@ -28,7 +28,7 @@ export default function MainApp() {
       index === editTitleIndex ? editTitle : element,
     );
     SetTitle(uptadedTitle);
-    setEditTitleIndex(null);
+    // setEditTitleIndex(null);
   };
   //   function for form
   const inputFinder = (e) => setCurrentIndex(e.target.value);
@@ -70,6 +70,7 @@ export default function MainApp() {
           ))}
         </div>
 
+        {/* FIRST FORM */}
         <form onSubmit={inputSubmit}>
           <div className="input-group mb-3 mt-5">
             <input
@@ -88,21 +89,24 @@ export default function MainApp() {
           </div>
         </form>
 
-        {editedTitle && (
-          <form className="input-group mb-3" onSubmit={editFormFunction}>
-            <h2>Modifica {editedTitle}: </h2>
-            <input
-              // Button Commands
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              type="text"
-              className="form-control"
-              placeholder="Change Title"
-              aria-describedby="button-addon2"
-            />
-            <button className="btn btn-primary">Change</button>
-          </form>
-        )}
+        {/* SECOND FORM */}
+        <div>
+          {editedTitle && (
+            <form className="input-group mb-3" onSubmit={editFormFunction}>
+              <h2>Modifica {editedTitle}: </h2>
+              <input
+                // Button Commands
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                type="text"
+                className="form-control"
+                placeholder="Change Title"
+                aria-describedby="button-addon2"
+              />
+              <button className="btn btn-primary">Change</button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
