@@ -3,7 +3,7 @@ import { useState } from "react";
 // LIST OF ITEMS
 const titles = ["Articolo 1", "Articolo 2 ", "Articolo 3 "];
 
-export default function Title() {
+export default function MainApp() {
   //   useSTATE
   const [title, SetTitle] = useState(titles);
   const [currentIndex, setCurrentIndex] = useState("");
@@ -12,7 +12,7 @@ export default function Title() {
   const [editTitle, setEditTitle] = useState("");
 
   // State For changing Title
-  const [editTitleIndex, setEditTitleIndex] = useState(0);
+  const [editTitleIndex, setEditTitleIndex] = useState(null);
   const editedTitle = title[editTitleIndex];
 
   // Function to declare wich Article
@@ -21,13 +21,22 @@ export default function Title() {
     setEditTitle(title[EditIndex]);
   };
 
+  // Function to edit Form
+  const editFormFunction = (e) => {
+    e.preventDefault();
+    const uptadedTitle = title.map((element, index) =>
+      index === editTitleIndex ? editTitle : element,
+    );
+    SetTitle(uptadedTitle);
+    setEditTitleIndex(null);
+  };
   //   function for form
   const inputFinder = (e) => setCurrentIndex(e.target.value);
   const inputSubmit = (e) => {
     e.preventDefault();
     SetTitle([...title, currentIndex]);
   };
-  //   function for buttons
+  //   function for deletebuttons
   const deleteOptionButton = (deleteButton) => {
     SetTitle(title.filter((element, index) => index !== deleteButton));
   };
@@ -79,18 +88,21 @@ export default function Title() {
           </div>
         </form>
 
-        <form className="input-group mb-3">
-          <h1>{editedTitle}</h1>
-          <input
-            value={editTitle}
-            onChange={""}
-            type="text"
-            className="form-control"
-            placeholder="Change Title"
-            aria-describedby="button-addon2"
-          />
-          <button className="btn btn-primary">Change</button>
-        </form>
+        {editedTitle && (
+          <form className="input-group mb-3" onSubmit={editFormFunction}>
+            <h2>Modifica {editedTitle}: </h2>
+            <input
+              // Button Commands
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              type="text"
+              className="form-control"
+              placeholder="Change Title"
+              aria-describedby="button-addon2"
+            />
+            <button className="btn btn-primary">Change</button>
+          </form>
+        )}
       </div>
     </div>
   );

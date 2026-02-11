@@ -1,9 +1,9 @@
-import Title from "./components/title";
+import MainApp from "./components/title";
 
 export default function App() {
   return (
     <>
-      <Title />
+      <MainApp />
     </>
   );
 }
