@@ -34,7 +34,8 @@ export default function MainApp() {
   const inputFinder = (e) => setCurrentIndex(e.target.value);
   const inputSubmit = (e) => {
     e.preventDefault();
-    SetTitle([...title, currentIndex]);
+    if (!currentIndex) return;
+    else SetTitle([...title, currentIndex]);
   };
   //   function for deletebuttons
   const deleteOptionButton = (deleteButton) => {
